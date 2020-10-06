@@ -39,6 +39,22 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     // write your solution here
+    const D = {
+        "10": ".", 
+        "11": "-",
+        "00": "",
+    }
+    var res = []
+    res = expr.split("**********");
+    res = res.map(e => e.split(/(?=(?:\d{10})+$)/));
+    res = res.map(e => e.map(d => d.split(/(?=(?:\d{2})+$)/)));
+    res = res.map(e => e.map(d => d.map(f => D[f])));
+    res = res.map(e => e.map(d => d.join("")));
+    res = res.map(e => e.map(d => MORSE_TABLE[d]));
+    res = res.map(e => e.join(""));
+    res = res.join(" ");
+    return res;
+
 }
 
 module.exports = {
